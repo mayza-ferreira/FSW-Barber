@@ -4,10 +4,12 @@ import { Button } from "./_components/ui/button"
 import { SearchIcon } from "lucide-react"
 import Image from "next/image"
 import { Card, CardContent } from "./_components/ui/card"
-import { Badge } from "./_components/ui/badge"
-import { Avatar, AvatarImage } from "./_components/ui/avatar"
 import { db } from "./_lib/prisma"
 import BarbershopItem from "./_components/barbershop-item"
+import { quikSearchOptions } from "./_constants/search"
+import BookingItem from "./_components/booking-item"
+
+// TODO: receber agendamento como prop
 
 const Home = async () => {
   //llamar a la base de datos
@@ -36,25 +38,17 @@ const Home = async () => {
 
         {/* BUSQUEDA RAPIDA*/}
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
-          <Button className="gap-2" variant={"secondary"}>
-            <Image alt="cabelo" src="./cabelo.svg" width={16} height={16} />
-            Cabelo
-          </Button>
-
-          <Button className="gap-2" variant={"secondary"}>
-            <Image alt="barba" src="./barba.svg" width={16} height={16} />
-            Barba
-          </Button>
-
-          <Button className="gap-2" variant={"secondary"}>
-            <Image
-              alt="acabamento"
-              src="./acabamento.svg"
-              width={16}
-              height={16}
-            />
-            Acabamento
-          </Button>
+          {quikSearchOptions.map((option) => (
+            <Button className="gap-2" variant={"secondary"} key={option.title}>
+              <Image
+                alt={option.title}
+                src={option.imageUrl}
+                width={16}
+                height={16}
+              />
+              {option.title}
+            </Button>
+          ))}
         </div>
 
         {/* BANNER */}
@@ -68,33 +62,7 @@ const Home = async () => {
         </div>
 
         {/* AGENDAMENTO */}
-        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
-          Agendamentos
-        </h2>
-        <Card>
-          <CardContent className="flex justify-between p-0">
-            {/*Left Card Content */}
-
-            <div className="flex flex-col gap-2 py-5 pl-5">
-              <Badge className="w-fit">Confirmado</Badge>
-              <h3 className="font-semibold">Corte de Cabelo</h3>
-              <div className="flex items-center gap-2">
-                <Avatar className="h-6 w-6">
-                  <AvatarImage src="/avatar.png" />
-                </Avatar>
-                <p className="text-sm">Barberia FSW</p>
-              </div>
-            </div>
-
-            {/*Right Card Content */}
-            <div className="flex flex-col items-center justify-center border-l-2 border-solid px-5">
-              <p className="text-sm">Agosto</p>
-              <p className="text-2xl">13</p>
-              <p className="text-sm">19:30</p>
-            </div>
-          </CardContent>
-        </Card>
-
+        <BookingItem />
         {/* RECOMENDADOS */}
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
           Recomendados
