@@ -12,6 +12,11 @@ import BarbershopItem from "./_components/barbershop-item"
 const Home = async () => {
   //llamar a la base de datos
   const barbershops = await db.barbershop.findMany({})
+  const popularBarbershop = await db.barbershop.findMany({
+    orderBy: {
+      name: "desc",
+    },
+  })
   return (
     <div>
       <Header />
@@ -26,6 +31,29 @@ const Home = async () => {
           <Input placeholder="Buscar" />
           <Button>
             <SearchIcon />
+          </Button>
+        </div>
+
+        {/* BUSQUEDA RAPIDA*/}
+        <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
+          <Button className="gap-2" variant={"secondary"}>
+            <Image alt="cabelo" src="./cabelo.svg" width={16} height={16} />
+            Cabelo
+          </Button>
+
+          <Button className="gap-2" variant={"secondary"}>
+            <Image alt="barba" src="./barba.svg" width={16} height={16} />
+            Barba
+          </Button>
+
+          <Button className="gap-2" variant={"secondary"}>
+            <Image
+              alt="acabamento"
+              src="./acabamento.svg"
+              width={16}
+              height={16}
+            />
+            Acabamento
           </Button>
         </div>
 
@@ -67,6 +95,7 @@ const Home = async () => {
           </CardContent>
         </Card>
 
+        {/* RECOMENDADOS */}
         <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
           Recomendados
         </h2>
@@ -75,7 +104,28 @@ const Home = async () => {
             <BarbershopItem key={barbershop.id} barbershop={barbershop} />
           ))}
         </div>
+
+        {/* POPULARES */}
+        <h2 className="mb-3 mt-6 text-xs font-bold uppercase text-gray-400">
+          Populares
+        </h2>
+        <div className="flex gap-4 overflow-auto [&::-webkit-scrollbar]:hidden">
+          {popularBarbershop.map((barbershop) => (
+            <BarbershopItem key={barbershop.id} barbershop={barbershop} />
+          ))}
+        </div>
       </div>
+
+      {/* FOOTER */}
+      <footer>
+        <Card>
+          <CardContent className="px-5 py-6">
+            <p className="text-sm text-gray-400">
+              © 2023 Copyright <span className="font-bold">FSW Barber</span>
+            </p>
+          </CardContent>
+        </Card>
+      </footer>
     </div>
   )
 }
