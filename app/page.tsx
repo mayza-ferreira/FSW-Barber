@@ -6,6 +6,7 @@ import BarbershopItem from "./_components/barbershop-item"
 import { quikSearchOptions } from "./_constants/search"
 import BookingItem from "./_components/booking-item"
 import Search from "./_components/search"
+import Link from "next/link"
 
 // TODO: receber agendamento como prop
 
@@ -34,14 +35,22 @@ const Home = async () => {
         {/* BUSQUEDA RAPIDA*/}
         <div className="mt-6 flex gap-3 overflow-x-scroll [&::-webkit-scrollbar]:hidden">
           {quikSearchOptions.map((option) => (
-            <Button className="gap-2" variant={"secondary"} key={option.title}>
-              <Image
-                alt={option.title}
-                src={option.imageUrl}
-                width={16}
-                height={16}
-              />
-              {option.title}
+            <Button
+              className="gap-2"
+              variant={"secondary"}
+              key={option.title}
+              asChild
+            >
+              <Link href={`/barbershops?service=${option.title}`}>
+                <Image
+                  alt={option.title}
+                  src={option.imageUrl}
+                  width={16}
+                  height={16}
+                />
+
+                {option.title}
+              </Link>
             </Button>
           ))}
         </div>
