@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ✂️ FSW-Barber
 
-## Getting Started
+**FSW-Barber** is a mobile-first web application designed for booking appointments at barbershops. Developed during the **Full Stack Week**, this project emphasizes a seamless user experience for clients seeking to schedule services online.
 
-First, run the development server:
+## 🚀 Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 14** – React framework for server-rendered applications.
+- **TypeScript** – Strongly typed programming language for JavaScript.
+- **Tailwind CSS** – Utility-first CSS framework for rapid UI development.
+- **ShadCN UI** – Accessible and customizable UI components.
+- **Prisma ORM** – Type-safe database client for PostgreSQL.
+- **NextAuth.js** – Authentication for Next.js applications.
+- **Zod** – TypeScript-first schema declaration and validation library.
+- **React Hook Form** – Performant, flexible, and extensible forms with easy-to-use validation.
+- **date-fns** – Modern JavaScript date utility library.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- 🔐 **Google Authentication**: Secure login using Google accounts via NextAuth.js.
+- 🏢 **Barbershop Listings**: Browse a variety of barbershops with detailed information.
+- 📅 **Appointment Scheduling**: Select services, dates, and times to book appointments.
+- 📱 **Responsive Design**: Optimized for mobile devices to ensure a user-friendly experience.
+- 🧾 **Booking Overview**: View and manage your scheduled appointments.
+- 🧪 **Form Validation**: Robust client-side validation using Zod and React Hook Form.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 📦 Getting Started
 
-## Learn More
+### Prerequisites
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js installed on your machine.
+- A PostgreSQL database setup.
+- Google OAuth credentials for authentication.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Installation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Clone the repository:**
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/mayza-ferreira/FSW-Barber.git
+   cd FSW-Barber
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  2. **Install dependencies:**
+  
+     
+     ```bash
+      npm install
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  3. **Configure environment variables:**
+   
+     -Create a .env file in the root directory.
+   
+     -Populate it based on the .env.example file, including your PostgreSQL connection string and Google OAuth credentials.
+   
+4. **Set up the database:**
+     ```bash
+     npx prisma db push
+     npx prisma db seed
+
+5. **Run the development server:**
+
+   ```bash
+      npm run dev
+   ```
+    Open http://localhost:3000 in your browser to view the application.
+
+## 🌐 Live Demo
+Experience the application live at: https://fsw-barber-three-wine.vercel.app
